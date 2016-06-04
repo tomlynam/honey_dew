@@ -16,6 +16,7 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list = List.find(params[:id])
   end
 
   def new
@@ -33,7 +34,8 @@ class ListsController < ApplicationController
   end
 
   def update
-  	if @list.update(list_params)
+    @list = List.find(params[:id])
+    if @list.update(list_params)
   		redirect_to list_path(@list)
   	else
   		render :edit

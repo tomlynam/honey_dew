@@ -2,7 +2,7 @@ class ListsController < ApplicationController
 	before_action :list, except: [ :new, :show, :create]
 
   def index
-  	@lists = current_user.lists
+  	@lists = List.all
   end
 
   def show
@@ -19,9 +19,9 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = current_user.lists.new(list_params)
+  	@list = current_user.lists.new(list_params)
   	if @list.save
-      redirect_to lists_path
+  		redirect_to lists_path(@list)
   	else 
   		render :new
   	end

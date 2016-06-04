@@ -1,2 +1,20 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<h2><%= @list.title %> items: </h2>
+
+<% if @lists.any? %>
+  <ul>
+    <% @lists.each do |list| %>
+    <li>
+    <%= link_to list.title, list_path(list) %>
+    <%= link_to list.description, list_path(list) %>
+    </li>
+    <% end %>
+  </ul>
+  <% else %>
+  <h3>This list doesn't have any items!</h3>
+<% end %>
+
+<hr />
+
+<%= link_to 'Add List', lists_path %> |
+
+<%= link_to 'Back', root_path %>

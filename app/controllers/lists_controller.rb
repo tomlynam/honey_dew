@@ -1,8 +1,8 @@
 class ListsController < ApplicationController
-	before_action :list, except: [ :new, :show, :create]
+	before_action :user
 
   def index
-  	@lists = current_user.lists
+    @lists = List.where(user_id:@user)
   end
 
   def show
@@ -19,7 +19,8 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = current_user.lists.new(list_params)
+    @list = @user.lists.new(list_params)
+    @list.user_id = current_user.id
   	if @list.save
       redirect_to lists_path
   	else 
@@ -43,11 +44,11 @@ class ListsController < ApplicationController
   private
 
   def list_params
-  	params.require(:list).permit(:title, :description)
+  	params.require(:list).permit(:title, :description, :user_id)
   end
 
-  def list
-  	@list = current_user.lists.find(params[:id])
+  def user
+    @user = current_user
   end
 
 end

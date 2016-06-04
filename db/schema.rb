@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160604161857) do
     t.string   "description"
     t.boolean  "complete"
     t.boolean  "assigned"
+    t.integer  "list_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160604161857) do
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-	before_action :list, except: [:index, :new, :show, :create]
+	before_action :list, except: [ :new, :show, :create]
 
   def index
   	@lists = current_user.lists

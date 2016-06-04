@@ -25,7 +25,7 @@ class ListsController < ApplicationController
     @list = @user.lists.new(list_params)
     @list.user_id = current_user.id
   	if @list.save
-      redirect_to lists_path
+  		redirect_to lists_path(@list)
   	else 
   		render :new
   	end

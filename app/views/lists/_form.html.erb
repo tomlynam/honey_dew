@@ -1,9 +1,20 @@
-<%= form_for @list, :html => { :multipart => true } do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="center-align container">
+	<%= form_for @list, :html => { :multipart => true } do |f| %>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+		<div class="row">
+			<div class="input-field col s4 offset-s4">
+			  <%= f.label :title %>
+			  <%= f.text_field :title %>
+		  </div>
+		</div>
 
-  <%= f.submit %>
-<% end %>
+		<div class="row">
+			<div class="input-field col s4 offset-s4">
+			  <%= f.label :description %>
+			  <%= f.text_field :description %>
+		  </div>
+	  </div>
+
+	  <%= f.submit %>
+	<% end %>
+</div>

@@ -1,20 +1,39 @@
-<%= form_for [@list, @item], :html => { :multipart => true } do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
 
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
+<div class="center-align container">
+  <%= form_for [@list, @item], :html => { :multipart => true } do |f| %>
+    <div class="row">
+      <div class="input-field col s2 offset">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+    </div>
 
-  <% if @item.persisted? %> 
-    <%= f.label :complete %>
-    <%= f.check_box :complete %>
+      <div class="row">
+        <div class="input-field col s2 offset">
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+      </div>
+     </div>
+
+      <div class="row">
+        <div class="input-field col s2 offset">
+          <% if @item.persisted? %> 
+            <%= f.label :complete %>
+            <%= f.check_box :complete %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s2 offset">
+          <% if @item.persisted? %>
+            <%= f.label :assigned %>
+            <%= f.check_box :assigned %>
+          <% end %>
+        </div>
+      </div>
+
+    <%= f.submit %>
   <% end %>
-
-  <% if @item.persisted? %>
-    <%= f.label :assigned %>
-    <%= f.check_box :assigned %>
-  <% end %>
-
-  <%= f.submit %>
-<% end %>
+</div>
 

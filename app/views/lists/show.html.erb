@@ -40,8 +40,18 @@
       <% @pending.each do |item| %>
         <ul>
           <li>
-            <%= link_to item.title, list_item_path(@list, item) %><br>
+            <%= link_to item.title, list_item_path(@list, item) %> 
           </li>
+
+          <%= form_for [@list, item] do |f| %>
+   					<%= f.hidden_field :assigned, value: true %>
+ 						<%= f.submit 'Accept' %>
+ 					<% end %>
+ 					<%= form_for [@list, item] do |f| %>
+   					<%= f.hidden_field :complete, value: true %>
+  				 	<%= f.submit 'Reject' %>
+ 					<% end %>
+
         </ul>
       <% end %>
     <% else %>
@@ -71,23 +81,4 @@
 
 <h3>Add New Item:</h3>
 
-<%= form_for [@list, @item], :html => { :multipart => true } do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br>
-
-  <% if @item.persisted? %> 
-    <%= f.label :complete %>
-    <%= f.check_box :complete %>
-  <% end %>
-
-  <% if @item.persisted? %>
-    <%= f.label :assigned %>
-    <%= f.check_box :assigned %>
-  <% end %>
-
-  <%= f.submit %>
-<% end %>
-
+<%= render(partial: 'items/form') %>

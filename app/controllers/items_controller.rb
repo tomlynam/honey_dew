@@ -27,8 +27,14 @@ class ItemsController < ApplicationController
   end
 
   def update
-  	if @item.update(item_params)
-  		redirect_to list_item_path(@item.list, @item)
+    if @item.update(item_params)
+      if(item_params.keys.count == 1)
+        key = item_params.keys.first
+        if(key == "assigned" || key == "complete")
+          redirect_to list_path(@item.list) and return
+        end
+      end
+      redirect_to list_item_path(@item.list, @item)
   	else
   		render :edit
   	end
@@ -38,7 +44,6 @@ class ItemsController < ApplicationController
   	@item.destroy
   	redirect_to list_path(params[:list_id])
   end
-
 
   private
 

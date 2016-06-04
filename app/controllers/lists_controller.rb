@@ -6,7 +6,7 @@ class ListsController < ApplicationController
   end
 
   def show
-  	# @list = List.find(params[:id])
+  	@list = List.find(params[:id])
   	# @complete = @list.items.where(complete: true)
   	# @incomplete = @list.items - @complete
   end
@@ -19,9 +19,9 @@ class ListsController < ApplicationController
   end
 
   def create
-  	@list = current_user.lists.new(list_params)
+    @list = current_user.lists.new(list_params)
   	if @list.save
-  		redirect_to lists_path(@list)
+      redirect_to lists_path
   	else 
   		render :new
   	end

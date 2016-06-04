@@ -1,4 +1,4 @@
-<h2><%= @list.title %> items: </h2>
+<h2>Lists </h2>
 
 <% if @lists.any? %>
   <ul>
@@ -10,11 +10,11 @@
     <% end %>
   </ul>
   <% else %>
-  <h3>This list doesn't have any items!</h3>
+  <h3>No Lists!</h3><br>
+  <%= link_to 'Add List', new_list_path %>
 <% end %>
 
 <hr />
 
-<%= link_to 'Add List', lists_path %> |
 
 <%= link_to 'Back', root_path %>

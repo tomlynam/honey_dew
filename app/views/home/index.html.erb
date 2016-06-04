@@ -1,8 +1,29 @@
-<%= render(partial: 'lists/navbar') %>
-
 <h1>Welcome, <%= current_user.first_name %>!</h1>
 
-<p>  <%= link_to 'Add List', new_list_path %></p>
+<% if @lists.any? %>
+  <% @lists.each do |list| %>
+    <div class="col s12 m4">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><%= list.title %></span>
+          <p><%= list.description %></p>
+        </div>
+        <div class="card-action">
+            <%= link_to 'View', list_path(list), class: "btn btn-primary" %>
+     		</div>
+    </div>
+  </div>
+
+	     
+	<% end %>
+
+	<% else %>
+		<h3>No Lists, please add one!</h3>
+	<% end %>
+
+
+<p><%= link_to 'Add List', new_list_path %></p>
+
 <p><%= link_to "Edit Profile", edit_user_registration_path %></p>
 
 <p><%= link_to "Log Out", destroy_user_session_path, method: :delete, data: {confirm: 'Really log out?'}%></p>

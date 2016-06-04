@@ -3,6 +3,7 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.where(user_id:@user)
+    redirect_to list_path(@lists.first)
   end
 
   def show

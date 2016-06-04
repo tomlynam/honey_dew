@@ -1,2 +1,15 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<h2><%= @item.title %></h2>
+<hr />
+<h3>Description: <%=@item.description %></h3>
+<h3>Completed: <%= @item.complete ? "yes" : "no" %></h3>
+<h3>Assigned: <%= @item.assign ? "yes" : "no" %></h3>
+
+
+
+<hr />
+<%= link_to 'Back to All Items', list_path(@list) %> |
+
+<%= link_to 'Edit Item', edit_list_item_path(@list, @item) %> |
+
+<%= link_to 'Delete Item', list_item_path, method: :delete, data: {confirm: 'Do you really want to delete this?'} %>
+

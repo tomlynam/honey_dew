@@ -1,0 +1,20 @@
+<%= form_for [@list, @item], :html => { :multipart => true } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <% if @item.persisted? %> 
+    <%= f.label :complete %>
+    <%= f.check_box :complete %>
+  <% end %>
+
+  <% if @item.persisted? %>
+    <%= f.label :assigned %>
+    <%= f.check_box :assigned %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
+

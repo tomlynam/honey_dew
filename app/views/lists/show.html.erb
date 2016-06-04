@@ -1,2 +1,28 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<h1>List</h1>
+<p>Title: <%= @list.title %></p>
+<p>Description: <%= @list.description %></p>
+
+<% if @list.items.any? %>
+  <% @list.items.each do |item| %>
+    <ul>
+     <li>
+      <%= link_to item.title, list_item_path(@list, item) %><br>
+     </li>
+   </ul>
+  <% end %>
+<% else %>
+  <h3>No items on this list please add one!</h3>
+  <%= link_to 'Add item', new_list_item_path(@list) %>
+<% end %>
+
+
+<%= link_to 'Add List', new_list_path %> |
+
+<%= link_to 'Edit List', edit_list_path(@list) %> |
+
+<%= link_to 'Delete List', list_path, method: :delete, data: {confirm: 'You sure you want to delete?'} %>
+
+<br>
+
+<%= link_to 'All Lists', lists_path %>
+

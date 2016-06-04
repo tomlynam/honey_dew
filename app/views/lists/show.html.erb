@@ -43,14 +43,16 @@
             <%= link_to item.title, list_item_path(@list, item) %> 
           </li>
 
-          <%= form_for [@list, item] do |f| %>
-   					<%= f.hidden_field :assigned, value: true %>
- 						<%= f.submit 'Accept' %>
- 					<% end %>
- 					<%= form_for [@list, item] do |f| %>
-   					<%= f.hidden_field :complete, value: true %>
-  				 	<%= f.submit 'Reject' %>
- 					<% end %>
+          <% if current_user.id == @list.user_id %>
+            <%= form_for [@list, item] do |f| %>
+     					<%= f.hidden_field :assigned, value: true %>
+   						<%= f.submit 'Accept' %>
+   					<% end %>
+   					<%= form_for [@list, item] do |f| %>
+     					<%= f.hidden_field :complete, value: true %>
+    				 	<%= f.submit 'Reject' %>
+   					<% end %>
+          <% end %>
 
         </ul>
       <% end %>

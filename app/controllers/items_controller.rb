@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-	before_action :list, only: [:edit, :new]
-	before_action :item, only: [:show, :edit, :destory, :update]
+	before_action :list, only: [:edit, :new, :index, :show]
+	before_action :item, only: [:show, :edit, :destroy, :update]
 
 
   def index
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   def create
   	@item = current_user.lists.find(params[:list_id]).items.new(item_params)
   	if @item.save
-  		redirect_to list_items_path(params[:list_id])
+  		redirect_to list_path(params[:list_id])
   	else
   		render :new
   	end

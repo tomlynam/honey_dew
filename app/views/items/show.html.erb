@@ -5,11 +5,12 @@
 <hr />
 <h3>Description: <%=@item.description %></h3>
 <h3>Completed: <%= @item.complete ? "yes" : "no" %></h3>
-<h3>Assigned: <%= @item.assign ? "yes" : "no" %></h3>
+<h3>Assigned: <%= @item.assigned ? "yes" : "no" %></h3>
 
 
 
-<hr />
+<hr>
+
 <%= link_to 'Back to All Items', list_path(@list) %> |
 
 <%= link_to 'Edit Item', edit_list_item_path(@list, @item) %> |

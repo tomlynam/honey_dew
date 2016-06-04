@@ -6,9 +6,12 @@ class ListsController < ApplicationController
   end
 
   def show
-  	@list = List.find(params[:id])
-  	# @complete = @list.items.where(complete: true)
-  	# @incomplete = @list.items - @complete
+    @list = List.find(params[:id])
+    @rejected = @list.items.where(complete: true, assigned: false)
+  	@pending = @list.items.where(complete: false, assigned: false)
+    @complete = @list.items.where(complete: true, assigned: true)
+  	@incomplete = @list.items.where(complete: false, assigned: true)
+    @item = @list.items.new
   end
 
   def edit
